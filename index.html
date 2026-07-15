@@ -1,68 +1,81 @@
-<canvas id="matrix-canvas"></canvas>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrix Decoder // Cyber Hacker Game</title>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<div class="terminal-container">
-  <header class="terminal-header">
-    <div class="header-left">
-      <span class="blink-fast">●</span> MATRIX_DECODER // v1.0.4
-    </div>
-    <div class="header-right">
-      NODE BYPASS STATUS: <span id="node-progress">0/4</span>
-    </div>
-  </header>
+  <canvas id="matrix-canvas"></canvas>
 
-  <div class="stats-panel">
-    <div class="timer-box">
-      TIME REMAINING: <span id="timer-display" class="neon-red-text">25.0s</span>
+  <div class="terminal-container">
+    <header class="terminal-header">
+      <div class="header-left">
+        <span class="blink-fast">●</span> MATRIX_DECODER // v1.0.4
+      </div>
+      <div class="header-right">
+        NODE BYPASS STATUS: <span id="node-progress">0/4</span>
+      </div>
+    </header>
+
+    <div class="stats-panel">
+      <div class="timer-box">
+        TIME REMAINING: <span id="timer-display" class="neon-red-text">25.0s</span>
+      </div>
+      <div class="progress-bar-container">
+        <div id="progress-bar-fill"></div>
+      </div>
     </div>
-    <div class="progress-bar-container">
-      <div id="progress-bar-fill"></div>
+
+    <main class="game-zone">
+      <section class="target-key-section">
+        <h3>TARGET_DECRYPTION_KEY:</h3>
+        <div id="target-key-display" class="key-container"></div>
+      </section>
+
+      <section class="grid-section">
+        <div id="node-grid" class="node-grid"></div>
+      </section>
+    </main>
+
+    <footer class="console-panel">
+      <div id="console-logs">
+        <p class="console-line">> SYSTEM: Initialize interface...</p>
+        <p class="console-line">> SYSTEM: Awaiting secure connection...</p>
+      </div>
+    </footer>
+  </div>
+
+  <div id="start-screen" class="overlay active">
+    <div class="modal-content">
+      <h1 class="neon-green-text title-glitch">SYSTEM BYPASS</h1>
+      <p>Вам потрібно зламати систему безпеки мережі, послідовно розшифрувавши 4 захищені вузли.</p>
+      <p class="rules">Правила: Знайдіть та натисніть символи з верхнього "TARGET_KEY" на сітці у правильному порядку (зліва направо), доки не вичерпався час.</p>
+      <button id="start-btn" class="cyber-btn neon-green-btn">INITIATE BYPASS (START)</button>
     </div>
   </div>
 
-  <main class="game-zone">
-    <section class="target-key-section">
-      <h3>TARGET_DECRYPTION_KEY:</h3>
-      <div id="target-key-display" class="key-container">
-        </div>
-    </section>
-
-    <section class="grid-section">
-      <div id="node-grid" class="node-grid">
-        </div>
-    </section>
-  </main>
-
-  <footer class="console-panel">
-    <div id="console-logs">
-      <p class="console-line">> SYSTEM: Initialize interface...</p>
-      <p class="console-line">> SYSTEM: Awaiting secure connection...</p>
+  <div id="win-screen" class="overlay">
+    <div class="modal-content">
+      <h1 class="neon-green-text">ACCESS GRANTED</h1>
+      <p class="success-text">Мережу успішно зламано! Системи захисту відключено.</p>
+      <p class="score-display">ФІНАЛЬНІ ОЧКИ: <span id="final-score">0</span></p>
+      <button id="restart-win-btn" class="cyber-btn neon-green-btn">SYSTEM REBOOT</button>
     </div>
-  </footer>
-</div>
-
-<div id="start-screen" class="overlay active">
-  <div class="modal-content">
-    <h1 class="neon-green-text title-glitch">SYSTEM BYPASS</h1>
-    <p>Вам потрібно зламати систему безпеки мережі, послідовно розшифрувавши 4 захищені вузли.</p>
-    <p class="rules">Правила: Знайдіть та натисніть символи з верхнього "TARGET_KEY" на сітці у правильному порядку (зліва направо), доки не вичерпався час.</p>
-    <button id="start-btn" class="cyber-btn neon-green-btn">INITIATE BYPASS (START)</button>
   </div>
-</div>
 
-<div id="win-screen" class="overlay">
-  <div class="modal-content">
-    <h1 class="neon-green-text">ACCESS GRANTED</h1>
-    <p class="success-text">Мережу успішно зламано! Системи захисту відключено.</p>
-    <p class="score-display">ФІНАЛЬНІ ОЧКИ: <span id="final-score">0</span></p>
-    <button id="restart-win-btn" class="cyber-btn neon-green-btn">SYSTEM REBOOT</button>
+  <div id="game-over-screen" class="overlay">
+    <div class="modal-content border-red">
+      <h1 class="neon-red-text blink-slow">SYSTEM LOCKDOWN</h1>
+      <p class="danger-text">CONNECTION TERMINATED // ACCESS DENIED</p>
+      <p class="rules">Перевищено час зламу або зафіксовано підозрілу активність.</p>
+      <button id="restart-fail-btn" class="cyber-btn neon-red-btn">RETRY CONNECTION</button>
+    </div>
   </div>
-</div>
 
-<div id="game-over-screen" class="overlay">
-  <div class="modal-content border-red">
-    <h1 class="neon-red-text blink-slow">SYSTEM LOCKDOWN</h1>
-    <p class="danger-text">CONNECTION TERMINATED // ACCESS DENIED</p>
-    <p class="rules">Перевищено час зламу або зафіксовано підозрілу активність.</p>
-    <button id="restart-fail-btn" class="cyber-btn neon-red-btn">RETRY CONNECTION</button>
-  </div>
-</div>
+  <script src="script.js"></script>
+</body>
+</html>
